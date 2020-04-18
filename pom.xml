@@ -21,7 +21,7 @@
 
     <scm>
         <connection>scm:git:https://github.com/petrusjt/homework_project</connection>
-        <developerConnection>scm:git:https://github.com:petrusjt/homework_project</developerConnection>
+        <developerConnection>scm:git:https://github.com/petrusjt/homework_project</developerConnection>
     </scm>
 
     <description>
