@@ -18,11 +18,21 @@
             <name>Petrus József Tamás</name>
         </developer>
     </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/petrusjt/homework_project.git</connection>
+        <developerConnection>scm:git:git@github.com:petrusjt/homework_project.git</developerConnection>
+    </scm>
+
     <description>
 
     </description>
     <dependencies>
-        
-    </dependencies>
 
+    </dependencies>
+    <build>
+        <plugins>
+
+        </plugins>
+    </build>
 </project>
