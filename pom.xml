@@ -20,8 +20,8 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git://github.com/petrusjt/homework_project.git</connection>
-        <developerConnection>scm:git:git@github.com:petrusjt/homework_project.git</developerConnection>
+        <connection>scm:git:https://github.com/petrusjt/homework_project</connection>
+        <developerConnection>scm:git:https://github.com:petrusjt/homework_project</developerConnection>
     </scm>
 
     <description>
