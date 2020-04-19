@@ -10,7 +10,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>13</maven.compiler.source>
         <maven.compiler.target>13</maven.compiler.target>
-        <mainCass>main.Main</mainCass>
+        <mainClass>main.Main</mainClass>
     </properties>
     <developers>
         <developer>
@@ -19,17 +19,24 @@
             <name>Petrus József Tamás</name>
         </developer>
     </developers>
-
     <scm>
         <connection>scm:git:https://github.com/petrusjt/homework_project</connection>
         <developerConnection>scm:git:https://github.com/petrusjt/homework_project</developerConnection>
     </scm>
-
     <description>
 
     </description>
     <dependencies>
-        
+        <dependency>
+            <groupId>org.tinylog</groupId>
+            <artifactId>tinylog-api</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.tinylog</groupId>
+            <artifactId>tinylog-impl</artifactId>
+            <version>2.1.1</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -41,7 +48,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.6-SNAPSHOT</version>
+                <version>0.8.5</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -66,6 +73,22 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>${mainClass}</mainClass>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
     <reporting>
