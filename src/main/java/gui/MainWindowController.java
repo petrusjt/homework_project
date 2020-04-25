@@ -40,7 +40,7 @@ public class MainWindowController {
         int gameWidth = 800;
         int gameHeight = 600;
         GameWindow gameLayout = new GameWindow(gameWidth, gameHeight);
-        Scene gameScene = new Scene(gameLayout, gameWidth, gameHeight, Color.BLUE);
+        Scene gameScene = new Scene(gameLayout, gameWidth, gameHeight);
         Stage gameStage = new Stage();
         gameStage.setResizable(false);
         gameStage.setTitle("Game Window");
