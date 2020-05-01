@@ -1,11 +1,13 @@
 package gui;
 
+import game.controller.GameController;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -37,7 +39,7 @@ public class MainWindowController {
     @FXML
     protected void startGame(MouseEvent event)
     {
-        int gameWidth = 800;
+        int gameWidth = 600;
         int gameHeight = 600;
         GameWindow gameLayout = new GameWindow(gameWidth, gameHeight);
         Scene gameScene = new Scene(gameLayout, gameWidth, gameHeight);
@@ -51,6 +53,12 @@ public class MainWindowController {
             @Override
             public void handle(WindowEvent event) {
                 Logger.info("Closing GameWindow");
+            }
+        });
+        gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                GameController.handleKeyEvent(event);
             }
         });
         gameStage.show();
