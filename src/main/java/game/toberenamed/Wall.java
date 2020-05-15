@@ -1,20 +1,22 @@
 package game.toberenamed;
 
-import javafx.scene.shape.Rectangle;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.awt.geom.Point2D;
+import java.awt.Point;
 
 /**
  * Class for representing the walls in the labyrinth.
  * */
 @Data
+@AllArgsConstructor
 public class Wall {
-    Point2D.Double position;
-    Rectangle wallRectangle;
+    Point start;
+    Point end;
 
-    public Wall(double x, double y, double width, double height) {
-        position = new Point2D.Double(x, y);
-        wallRectangle = new Rectangle(x, y, width, height);
+    public Wall(int startX, int startY, int endX, int endY) {
+        start = new Point(startX, startY);
+        end = new Point(endX, endY);
     }
+
 }
