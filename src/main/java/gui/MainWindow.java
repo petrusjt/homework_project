@@ -11,8 +11,7 @@ public final class MainWindow extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(FXMLLoader.getDefaultClassLoader().getResource("main_menu.fxml"));
-        fxmlLoader.setController(new MainWindowController());
+        fxmlLoader.setLocation(FXMLLoader.getDefaultClassLoader().getResource("fxml/main_menu.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         primaryStage.setTitle("Főmenü");
         primaryStage.setResizable(false);

@@ -4,23 +4,15 @@ import game.controller.GameController;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Arc;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.tinylog.Logger;
-
-import java.io.IOException;
 
 
 public class MainWindowController {
@@ -42,25 +34,25 @@ public class MainWindowController {
         int gameWidth = 600;
         int gameHeight = 600;
         GameWindow gameLayout = new GameWindow(gameWidth, gameHeight);
+        GameController gameController = new GameController(gameLayout.getCanvas());
         Scene gameScene = new Scene(gameLayout, gameWidth, gameHeight);
-        Stage gameStage = new Stage();
+        Stage gameStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         gameStage.setResizable(false);
         gameStage.setTitle("Game Window");
-        gameStage.initModality(Modality.WINDOW_MODAL);
-        gameStage.initOwner(anchorPane.getScene().getWindow());
         gameStage.setScene(gameScene);
         gameStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
-                Logger.info("Closing GameWindow");
+                gameController.handleOnCloseRequest(event);
             }
         });
         gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                GameController.handleKeyEvent(event);
+                gameController.handleKeyEvent(event);
             }
         });
+        gameController.setCanvas(gameLayout.getCanvas());
         gameStage.show();
         Logger.info("Created GameWindow");
     }
