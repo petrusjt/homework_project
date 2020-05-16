@@ -1,4 +1,4 @@
-package game.toberenamed;
+package game.utilities;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;

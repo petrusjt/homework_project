@@ -1,4 +1,4 @@
-package game.toberenamed;
+package game.utilities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

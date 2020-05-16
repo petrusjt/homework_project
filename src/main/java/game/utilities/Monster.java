@@ -1,7 +1,8 @@
-package game.toberenamed;
+package game.utilities;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import lombok.Data;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -9,6 +10,7 @@ import java.awt.geom.Point2D;
 /**
  * Class for representing the monster that chases the Player.
  * */
+@Data
 public class Monster {
     private Point2D position;
     private Circle monsterCircle;
@@ -42,7 +44,7 @@ public class Monster {
     }
 
 
-    public void setPosition(Point2D.Double position) {
+    public void setPosition(Point2D position) {
         this.position = position;
     }
 }
