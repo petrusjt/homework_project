@@ -69,6 +69,6 @@ public class Grid {
 
     public Point2D getIJ(double x, double y)
     {
-        return gridPoints.get((int) y).get((int) x);
+        return gridPoints.get((int) x).get((int) y);
     }
 }
