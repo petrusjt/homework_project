@@ -1,34 +1,31 @@
 package game.controller;
 
-import game.toberenamed.Grid;
-import game.toberenamed.Monster;
-import game.toberenamed.Player;
-import game.toberenamed.Wall;
+import game.utilities.Grid;
+import game.utilities.Monster;
+import game.utilities.Player;
+import game.utilities.Wall;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.tinylog.Logger;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Node;
-import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
 
+import xmlhelper.JAXBHelper;
 
 /**
  * Class for controlling the game.
@@ -49,20 +46,28 @@ public class GameController {
         grid = new Grid(canvas.getWidth(), canvas.getHeight(),6);
         this.canvas = canvas;
         this.player = new Player(new Point(0,0), (float) (Math.min(grid.getCellHeight(), grid.getCellWidth())) / 2);
-        this.monster = monster;
-        this.walls = walls;
+        this.monster = new Monster(new Point(4,2),(float) (Math.min(grid.getCellHeight(), grid.getCellWidth())) / 2);
+        this.walls = new ArrayList<>();
         this.graphicsDrawer = new GraphicsDrawer(player,monster,walls,canvas,grid);
         try {
             loadMap();
-        } catch (ParserConfigurationException | IOException | SAXException e) {
+        } catch (ParserConfigurationException | IOException | SAXException | JAXBException e) {
             e.printStackTrace();
         }
 
         this.graphicsDrawer.draw();
     }
 
-    private void loadMap() throws ParserConfigurationException, IOException, SAXException {
-        // TODO: load walls from maps.xml
+    private void loadMap() throws ParserConfigurationException, IOException, SAXException, JAXBException {
+        game.controller.mapxmlreader.Walls walls = JAXBHelper.fromXML(game.controller.mapxmlreader.Walls.class, getClass().getClassLoader().getResourceAsStream("maps/map.xml"));
+        for(game.controller.mapxmlreader.Wall wall : walls.getWall())
+        {
+            System.out.println(wall);
+            this.walls.add(new Wall(wall.getStart().getX(),wall.getStart().getY(), wall.getEnd().getX(), wall.getEnd().getY()));
+        }
+        graphicsDrawer.setWalls(this.walls);
+        System.out.println(walls);
+
     }
 
     public void handleKeyEvent(KeyEvent keyEvent) {
@@ -108,6 +113,7 @@ public class GameController {
     }
 
     public void handleOnCloseRequest(WindowEvent event) {
+        Logger.info("Closing GameWindow");
         Platform.exit();
     }
 }
