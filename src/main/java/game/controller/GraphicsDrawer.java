@@ -1,13 +1,11 @@
 package game.controller;
 
-import game.toberenamed.Grid;
-import game.toberenamed.Monster;
-import game.toberenamed.Player;
-import game.toberenamed.Wall;
+import game.utilities.Grid;
+import game.utilities.Monster;
+import game.utilities.Player;
+import game.utilities.Wall;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import org.tinylog.Logger;
 
 import java.awt.geom.Point2D;
@@ -24,6 +22,9 @@ public final class GraphicsDrawer {
     private Canvas canvas;
     private Grid grid;
 
+    private int OVALMARGIN = 8;
+    private int WALLWIDTH = 10;
+
     public GraphicsDrawer() {
     }
 
@@ -37,10 +38,15 @@ public final class GraphicsDrawer {
 
     public void draw()
     {
+        Logger.debug("Clearing screen");
+        canvas.getGraphicsContext2D().clearRect(0,0, canvas.getWidth(), canvas.getHeight());
         Logger.debug("Drawing on the screen");
+        Logger.debug("Drawing the grid");
+        drawGrid();
+        Logger.debug("Drawing walls");
         for(Wall wall : walls)
         {
-            Logger.trace("Looping through walls");
+
             double x;
             double y;
 
@@ -51,22 +57,56 @@ public final class GraphicsDrawer {
             if(start.getX() != end.getX())
             {
                 w = end.getX() - start.getX();
-                h = 3;
+                h = WALLWIDTH;
                 x = start.getX();
-                y = start.getY() - 1;
+                y = start.getY() - 0.4*WALLWIDTH;
             }
             else
             {
-                w = 3;
+                w = WALLWIDTH;
                 h = end.getY() - start.getY();
-                x = start.getX() - 1;
+                x = start.getX() - 0.4*WALLWIDTH;
                 y = start.getY();
             }
 
-            Logger.trace(h + ", " + w);
-
             canvas.getGraphicsContext2D().setFill(Color.BLACK);
             canvas.getGraphicsContext2D().fillRect(x,y,w, h);
+        }
+
+        Logger.debug("Drawing Player");
+        Point2D playerPosition = grid.getIJ(player.getPosition().getX(), player.getPosition().getY());
+        double playerX = playerPosition.getX() + OVALMARGIN;
+        double playerY = playerPosition.getY() + OVALMARGIN;
+        double playerWidth = grid.getCellWidth() - 2*OVALMARGIN;
+        double playerHeight = grid.getCellHeight() - 2*OVALMARGIN;
+        canvas.getGraphicsContext2D().setFill(Color.DODGERBLUE);
+        canvas.getGraphicsContext2D().fillOval(playerX, playerY, playerWidth, playerHeight);
+
+        Logger.debug("Drawing Monster");
+        Point2D monsterPosition = grid.getIJ(monster.getPosition().getX(), monster.getPosition().getY());
+        double monsterX = monsterPosition.getX() + OVALMARGIN;
+        double monsterY = monsterPosition.getY() + OVALMARGIN;
+        double monsterWidth = grid.getCellWidth() - 2*OVALMARGIN;
+        double monsterHeight = grid.getCellHeight() - 2*OVALMARGIN;
+        canvas.getGraphicsContext2D().setFill(Color.BLACK);
+        canvas.getGraphicsContext2D().fillOval(monsterX, monsterY, monsterWidth, monsterHeight);
+    }
+
+    private void drawGrid() {
+        canvas.getGraphicsContext2D().setFill(Color.BLACK);
+        for(int i = 0; i < grid.getGrid().size(); i++)
+        {
+            double y = i * grid.getCellHeight();
+
+            canvas.getGraphicsContext2D().fillRect(0, y - 1, canvas.getWidth(), 3);
+
+        }
+        for(int i = 0; i < grid.getGrid().get(0).size(); i++)
+        {
+            double x = i * grid.getCellWidth();
+
+            canvas.getGraphicsContext2D().fillRect(x - 1, 0, 3, canvas.getHeight());
+
         }
     }
 
