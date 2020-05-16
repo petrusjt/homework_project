@@ -22,8 +22,8 @@ public final class GraphicsDrawer {
     private Canvas canvas;
     private Grid grid;
 
-    private int OVALMARGIN = 8;
-    private int WALLWIDTH = 10;
+    private final int OVAL_MARGIN = 8;
+    private final int WALL_WIDTH = 10;
 
     public GraphicsDrawer() {
     }
@@ -41,8 +41,13 @@ public final class GraphicsDrawer {
         Logger.debug("Clearing screen");
         canvas.getGraphicsContext2D().clearRect(0,0, canvas.getWidth(), canvas.getHeight());
         Logger.debug("Drawing on the screen");
-        Logger.debug("Drawing the grid");
         drawGrid();
+        drawWalls();
+        drawPlayer();
+        drawMonster();
+    }
+
+    private void drawWalls() {
         Logger.debug("Drawing walls");
         for(Wall wall : walls)
         {
@@ -57,55 +62,60 @@ public final class GraphicsDrawer {
             if(start.getX() != end.getX())
             {
                 w = end.getX() - start.getX();
-                h = WALLWIDTH;
+                h = WALL_WIDTH;
                 x = start.getX();
-                y = start.getY() - 0.4*WALLWIDTH;
+                y = start.getY() - 0.4* WALL_WIDTH;
             }
             else
             {
-                w = WALLWIDTH;
+                w = WALL_WIDTH;
                 h = end.getY() - start.getY();
-                x = start.getX() - 0.4*WALLWIDTH;
+                x = start.getX() - 0.4* WALL_WIDTH;
                 y = start.getY();
             }
 
             canvas.getGraphicsContext2D().setFill(Color.BLACK);
             canvas.getGraphicsContext2D().fillRect(x,y,w, h);
         }
+    }
 
-        Logger.debug("Drawing Player");
-        Point2D playerPosition = grid.getIJ(player.getPosition().getX(), player.getPosition().getY());
-        double playerX = playerPosition.getX() + OVALMARGIN;
-        double playerY = playerPosition.getY() + OVALMARGIN;
-        double playerWidth = grid.getCellWidth() - 2*OVALMARGIN;
-        double playerHeight = grid.getCellHeight() - 2*OVALMARGIN;
-        canvas.getGraphicsContext2D().setFill(Color.DODGERBLUE);
-        canvas.getGraphicsContext2D().fillOval(playerX, playerY, playerWidth, playerHeight);
-
+    private void drawMonster() {
         Logger.debug("Drawing Monster");
         Point2D monsterPosition = grid.getIJ(monster.getPosition().getX(), monster.getPosition().getY());
-        double monsterX = monsterPosition.getX() + OVALMARGIN;
-        double monsterY = monsterPosition.getY() + OVALMARGIN;
-        double monsterWidth = grid.getCellWidth() - 2*OVALMARGIN;
-        double monsterHeight = grid.getCellHeight() - 2*OVALMARGIN;
+        double monsterX = monsterPosition.getX() + OVAL_MARGIN;
+        double monsterY = monsterPosition.getY() + OVAL_MARGIN;
+        double monsterWidth = grid.getCellWidth() - 2* OVAL_MARGIN;
+        double monsterHeight = grid.getCellHeight() - 2* OVAL_MARGIN;
         canvas.getGraphicsContext2D().setFill(Color.BLACK);
         canvas.getGraphicsContext2D().fillOval(monsterX, monsterY, monsterWidth, monsterHeight);
     }
 
+    private void drawPlayer() {
+        Logger.debug("Drawing Player");
+        Point2D playerPosition = grid.getIJ(player.getPosition().getX(), player.getPosition().getY());
+        double playerX = playerPosition.getX() + OVAL_MARGIN;
+        double playerY = playerPosition.getY() + OVAL_MARGIN;
+        double playerWidth = grid.getCellWidth() - 2* OVAL_MARGIN;
+        double playerHeight = grid.getCellHeight() - 2* OVAL_MARGIN;
+        canvas.getGraphicsContext2D().setFill(Color.DODGERBLUE);
+        canvas.getGraphicsContext2D().fillOval(playerX, playerY, playerWidth, playerHeight);
+    }
+
     private void drawGrid() {
+        Logger.debug("Drawing the grid");
         canvas.getGraphicsContext2D().setFill(Color.BLACK);
         for(int i = 0; i < grid.getGrid().size(); i++)
         {
             double y = i * grid.getCellHeight();
 
-            canvas.getGraphicsContext2D().fillRect(0, y - 1, canvas.getWidth(), 3);
+            canvas.getGraphicsContext2D().fillRect(0, y, canvas.getWidth(), 1);
 
         }
         for(int i = 0; i < grid.getGrid().get(0).size(); i++)
         {
             double x = i * grid.getCellWidth();
 
-            canvas.getGraphicsContext2D().fillRect(x - 1, 0, 3, canvas.getHeight());
+            canvas.getGraphicsContext2D().fillRect(x, 0, 1, canvas.getHeight());
 
         }
     }
