@@ -66,7 +66,7 @@ public class MainWindowController {
     @FXML
     protected void exitGame(MouseEvent event)
     {
-        Logger.info("Closing application");
+        Logger.info("Closing MainWindow");
         Platform.exit();
     }
 
