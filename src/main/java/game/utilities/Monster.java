@@ -34,17 +34,4 @@ public class Monster {
         this.monsterCircle = new Circle(position.getX(), position.getY(), radius, Color.BLACK);;
     }
 
-    /**
-     * Sets the position to the given coordinates.
-     * @param x The monster's to be X coordinate
-     * @param y The monster's to be Y coordinate
-     * */
-    public void setPosition(double x, double y) {
-        position.setLocation(x, y);
-    }
-
-
-    public void setPosition(Point2D position) {
-        this.position = position;
-    }
 }

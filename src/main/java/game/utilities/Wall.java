@@ -2,6 +2,7 @@ package game.utilities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.awt.Point;
 
@@ -10,6 +11,7 @@ import java.awt.Point;
  * */
 @Data
 @AllArgsConstructor
+@EqualsAndHashCode
 public class Wall {
     Point start;
     Point end;

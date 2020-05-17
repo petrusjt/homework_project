@@ -1,5 +1,6 @@
 package game.utilities;
 
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ public class Grid {
      * Creates {@code Grid} object that represents a grid.
      * For this implementation screenWidth and screenHeight should be the same value, however
      * it works on different values too.
-     * If different values provided the cells of the grid won't represent a square but a rectangle.
+     * If different values are provided the cells of the cells won't represent a square but a rectangle.
      * @param screenWidth The width of the whole grid
      * @param screenHeight The height of the whole grid
      * @param cells The number of cells per row and per column
@@ -47,11 +48,11 @@ public class Grid {
             gridPoints.add(new ArrayList<>());
             for(int j = 0; j*horizontalStep <= width; j++)
             {
-                gridPoints.get(i).add(new Point2D.Double(i*verticalStep, j*horizontalStep));
+                gridPoints.get(i).add(new Point2D.Double(j*horizontalStep, i*verticalStep));
             }
         }
-        System.out.println(gridPoints);
     }
+
     public double getCellWidth()
     {
         return width / cells;
@@ -69,6 +70,6 @@ public class Grid {
 
     public Point2D getIJ(double x, double y)
     {
-        return gridPoints.get((int) x).get((int) y);
+        return gridPoints.get((int) y).get((int) x);
     }
 }
