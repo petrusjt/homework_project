@@ -52,7 +52,6 @@ public class MainWindowController {
                 gameController.handleKeyEvent(event);
             }
         });
-        gameController.setCanvas(gameLayout.getCanvas());
         gameStage.show();
         Logger.info("Created GameWindow");
     }
