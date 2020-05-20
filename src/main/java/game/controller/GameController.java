@@ -1,5 +1,7 @@
 package game.controller;
 
+import game.highscore.HighScore;
+import game.highscore.HighScores;
 import game.utilities.Grid;
 import game.utilities.Monster;
 import game.utilities.Player;
@@ -16,17 +18,11 @@ import org.tinylog.Logger;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.xml.sax.SAXException;
-
 import javax.xml.bind.JAXBException;
-import javax.xml.parsers.ParserConfigurationException;
 
 import xmlhelper.JAXBHelper;
 
@@ -51,12 +47,18 @@ public class GameController {
         RIGHT
     }
 
+    private double startTime;
+    private double endTime;
+    private int numberOfSteps = 0;
+    private String playerName;
+
     public GameController(Canvas canvas) {
         grid = new Grid(canvas.getWidth(), canvas.getHeight(), NUMBER_OF_CELLS);
         this.player = new Player(new Point(0,0), (float) (Math.min(grid.getCellHeight(), grid.getCellWidth())) / 2);
         this.monster = new Monster(new Point(4,2),(float) (Math.min(grid.getCellHeight(), grid.getCellWidth())) / 2);
         this.walls = new ArrayList<>();
         this.graphicsDrawer = new GraphicsDrawer(player,monster,walls,canvas,grid);
+        this.playerName = "testPlayer";
 
         moveKeys = new ArrayList<>();
         moveKeys.add(KeyCode.W);
@@ -70,7 +72,7 @@ public class GameController {
 
         try {
             loadMap();
-        } catch (ParserConfigurationException | IOException | SAXException | JAXBException e) {
+        } catch (JAXBException e) {
             e.printStackTrace();
         }
 
@@ -84,19 +86,25 @@ public class GameController {
         }
 
         graphicsDrawer.draw();
+        startTime = System.currentTimeMillis();
     }
 
     public void handleKeyEvent(KeyEvent keyEvent) {
         Logger.debug("Key pressed: " + keyEvent.getCode());
-        doGameLogic(keyEvent);
+        try {
+            doGameLogic(keyEvent);
+        } catch (JAXBException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void doGameLogic(KeyEvent keyEvent) {
+    private void doGameLogic(KeyEvent keyEvent) throws IOException, JAXBException {
         KeyCode code = keyEvent.getCode();
         if(moveKeys.contains(code))
         {
             if(canPlayerMove(getDirectionFromKeyCode(code)))
             {
+                numberOfSteps++;
                 if(!isWinningMove(getDirectionFromKeyCode(code)))
                 {
                     movePlayer(getDirectionFromKeyCode(code));
@@ -297,7 +305,7 @@ public class GameController {
         return false;
     }
 
-    private void loadMap() throws ParserConfigurationException, IOException, SAXException, JAXBException {
+    private void loadMap() throws JAXBException {
         game.controller.mapxmlreader.Walls walls = JAXBHelper.fromXML(game.controller.mapxmlreader.Walls.class, getClass().getClassLoader().getResourceAsStream("maps/map.xml"));
         for(game.controller.mapxmlreader.Wall wall : walls.getWall())
         {
@@ -307,7 +315,8 @@ public class GameController {
 
     }
 
-    private void handleGameOver(KeyEvent keyEvent) {
+    private void handleGameOver(KeyEvent keyEvent) throws IOException, JAXBException {
+        endTime = System.currentTimeMillis();
         if(isGameLost())
         {
             Logger.debug("Player lost the game.");
@@ -321,8 +330,25 @@ public class GameController {
         resetMainWindow((Stage) ((Scene) keyEvent.getSource()).getWindow());
     }
 
-    private void savePlayerStats() {
-        //TODO
+    private void savePlayerStats() throws IOException, JAXBException {
+        String userHome = System.getProperty("user.home");
+        String separator = File.separator;
+        String saveFilePath = userHome + separator + ".labyrinth" + separator + "savefile.xml";
+        Logger.info("Loading save file from " + saveFilePath);
+
+        File saveFile = new File(saveFilePath);
+        InputStream is = new FileInputStream(saveFile);
+        HighScores highScores = JAXBHelper.fromXML(HighScores.class, is);
+        is.close();
+        if(highScores.getHighScores() == null)
+        {
+            highScores.setHighScores(new ArrayList<>());
+        }
+        highScores.getHighScores().add(new HighScore(playerName, (endTime - startTime) / 1000.0, numberOfSteps, !isGameLost()));
+        OutputStream os = new FileOutputStream(saveFile);
+        JAXBHelper.toXML(highScores, os);
+        os.close();
+
     }
 
     private void resetMainWindow(Stage stage)
@@ -365,7 +391,7 @@ public class GameController {
         File saveFile = new File(saveFilePath);
         PrintWriter printWriter = new PrintWriter(saveFile);
         printWriter.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-        printWriter.println("<highscores></highscores>");
+        printWriter.println("<highScores></highScores>");
         printWriter.close();
 
     }
