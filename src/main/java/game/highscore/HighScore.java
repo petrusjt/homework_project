@@ -15,5 +15,19 @@ public class HighScore {
     private String playerName;
     private double secondsToEnd;
     private int numberOfSteps;
-    private boolean didPlayerWin;
+    private boolean gameWon;
+
+    public String isGameWon()
+    {
+        int c;
+        if(gameWon)
+        {
+            c = 0x2713;
+        }
+        else
+        {
+            c = 0x2715;
+        }
+        return String.valueOf((char) c);
+    }
 }
