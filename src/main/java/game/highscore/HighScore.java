@@ -22,11 +22,11 @@ public class HighScore {
         int c;
         if(gameWon)
         {
-            c = 0x2713;
+            c = 0x2714;
         }
         else
         {
-            c = 0x2715;
+            c = 0x2716;
         }
         return String.valueOf((char) c);
     }

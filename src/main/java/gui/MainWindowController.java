@@ -1,6 +1,5 @@
 package gui;
 
-import game.controller.GameController;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -9,10 +8,8 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.tinylog.Logger;
@@ -22,22 +19,10 @@ import java.io.IOException;
 
 public class MainWindowController {
     @FXML
-    private AnchorPane anchorPane;
-
-    @FXML
     private TextField playerName;
 
     @FXML
     private Button startButton;
-
-    @FXML
-    private Button highscoreButton;
-
-    @FXML
-    private Button helpButton;
-
-    @FXML
-    private Button exitButton;
 
     @FXML
     protected void startGame(MouseEvent event)

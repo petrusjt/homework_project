@@ -2,13 +2,10 @@ package gui;
 
 import game.highscore.HighScore;
 import game.highscore.HighScores;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import game.utilities.MainMenuLoader;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -75,18 +72,6 @@ public class HighScoreWindowController implements Initializable {
     }
 
     public void backToMainMenu(MouseEvent event) {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(FXMLLoader.getDefaultClassLoader().getResource("fxml/main_menu.fxml"));
-        Scene scene = null;
-        try {
-            scene = new Scene(fxmlLoader.load());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle("Főmenü");
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.show();
+        MainMenuLoader.loadMainMenu((Stage) ((Node) event.getSource()).getScene().getWindow());
     }
 }

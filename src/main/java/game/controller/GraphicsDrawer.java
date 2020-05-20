@@ -1,8 +1,9 @@
 package game.controller;
 
 import game.utilities.Grid;
-import game.utilities.Monster;
-import game.utilities.Player;
+import game.utilities.entities.Entity;
+import game.utilities.entities.Monster;
+import game.utilities.entities.Player;
 import game.utilities.Wall;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.paint.Color;
@@ -16,8 +17,8 @@ import java.util.List;
  * NOTE: This class is intended to work only within this project.
  * */
 public final class GraphicsDrawer {
-    private Player player;
-    private Monster monster;
+    private Entity player;
+    private Entity monster;
     private List<Wall> walls;
     private Canvas canvas;
     private Grid grid;
@@ -25,10 +26,16 @@ public final class GraphicsDrawer {
     private final int OVAL_MARGIN = 8;
     private final int WALL_WIDTH = 10;
 
-    public GraphicsDrawer() {
-    }
-
-    public GraphicsDrawer(Player player, Monster monster, List<Wall> walls, Canvas canvas, Grid grid) {
+    /**
+     * Creates {@code GraphicsDrawer} object.
+     * This class is responsible for drawing the game's each state.
+     * @param player The {@code Player} object that the player controls.
+     * @param monster The {@code Monster} object representing the monster of the game.
+     * @param walls {@link List} of {@code Wall} objects representing the walls in the game.
+     * @param canvas {@code Canvas} object that the drawing will appear on.
+     * @param grid {@code Grid} object that is the base of the drawing.
+     * */
+    public GraphicsDrawer(Entity player, Entity monster, List<Wall> walls, Canvas canvas, Grid grid) {
         this.player = player;
         this.monster = monster;
         this.walls = walls;
@@ -36,6 +43,9 @@ public final class GraphicsDrawer {
         this.grid = grid;
     }
 
+    /**
+     * Draws the state represented by the fields of this class on the {@code canvas}.
+     * */
     public void draw()
     {
         Logger.debug("Clearing screen");
@@ -118,21 +128,5 @@ public final class GraphicsDrawer {
             canvas.getGraphicsContext2D().fillRect(x, 0, 1, canvas.getHeight());
 
         }
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
-    public void setMonster(Monster monster) {
-        this.monster = monster;
-    }
-
-    public void setWalls(List<Wall> walls) {
-        this.walls = walls;
-    }
-
-    public void setCanvas(Canvas canvas) {
-        this.canvas = canvas;
     }
 }

@@ -9,6 +9,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
+
+/**
+ * Represents the root element of the xml file used to store the map's walls' position.
+ * */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @Data @NoArgsConstructor @AllArgsConstructor
