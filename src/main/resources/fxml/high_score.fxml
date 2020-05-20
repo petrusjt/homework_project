@@ -4,14 +4,14 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="649.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.HighScoreWindowController">
    <children>
-      <TableView layoutX="151.0" layoutY="101.0" prefHeight="601.0" prefWidth="936.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="highScoreTable" layoutX="151.0" layoutY="101.0" prefHeight="601.0" prefWidth="936.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
-          <TableColumn prefWidth="137.0" text="Sorszám" />
-          <TableColumn prefWidth="230.0" text="Név" />
-            <TableColumn minWidth="0.0" prefWidth="282.0" text="Idő" />
+          <TableColumn prefWidth="137.0" text="Név" />
+          <TableColumn prefWidth="230.0" text="Idő" />
+            <TableColumn minWidth="0.0" prefWidth="282.0" text="Lépések száma" />
+            <TableColumn prefWidth="75.0" text="Kijutott?" />
         </columns>
       </TableView>
    </children>
