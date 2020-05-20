@@ -4,9 +4,12 @@ import game.controller.GameController;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -14,16 +17,24 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.tinylog.Logger;
 
+import java.io.IOException;
+
 
 public class MainWindowController {
     @FXML
     private AnchorPane anchorPane;
 
     @FXML
+    private TextField playerName;
+
+    @FXML
     private Button startButton;
 
     @FXML
     private Button highscoreButton;
+
+    @FXML
+    private Button helpButton;
 
     @FXML
     private Button exitButton;
@@ -34,7 +45,7 @@ public class MainWindowController {
         int gameWidth = 600;
         int gameHeight = 600;
         GameWindow gameLayout = new GameWindow(gameWidth, gameHeight);
-        GameController gameController = new GameController(gameLayout.getCanvas());
+        GameController gameController = new GameController(playerName.getText().strip().replaceAll("\\s",""), gameLayout.getCanvas());
         Scene gameScene = new Scene(gameLayout, gameWidth, gameHeight);
         Stage gameStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         gameStage.setResizable(false);
@@ -59,7 +70,16 @@ public class MainWindowController {
     @FXML
     protected void showHighScores(MouseEvent event)
     {
-        //TODO create and open new window containing the high score table
+        FXMLLoader fxmlLoader = new FXMLLoader(FXMLLoader.getDefaultClassLoader().getResource("fxml/high_score.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        try {
+            Scene highScoreScene = new Scene(fxmlLoader.load());
+            stage.setScene(highScoreScene);
+            stage.setTitle("Rekordok");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -69,4 +89,30 @@ public class MainWindowController {
         Platform.exit();
     }
 
+    public void showHelp(MouseEvent event) {
+        FXMLLoader fxmlLoader = new FXMLLoader(FXMLLoader.getDefaultClassLoader().getResource("fxml/help_window.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        try {
+            Scene highScoreScene = new Scene(fxmlLoader.load());
+            stage.setScene(highScoreScene);
+            stage.setTitle("Játékleírás");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void checkPlayerNameGiven(KeyEvent keyEvent) {
+        String name = playerName.getText();
+        name = name.strip().replaceAll("\\s","");
+        if(name.length() > 0)
+        {
+            startButton.setDisable(false);
+        }
+        else
+        {
+            startButton.setDisable(true);
+        }
+    }
 }
