@@ -52,13 +52,13 @@ public class GameController {
     private int numberOfSteps = 0;
     private String playerName;
 
-    public GameController(Canvas canvas) {
+    public GameController(String playerName, Canvas canvas) {
         grid = new Grid(canvas.getWidth(), canvas.getHeight(), NUMBER_OF_CELLS);
         this.player = new Player(new Point(0,0), (float) (Math.min(grid.getCellHeight(), grid.getCellWidth())) / 2);
         this.monster = new Monster(new Point(4,2),(float) (Math.min(grid.getCellHeight(), grid.getCellWidth())) / 2);
         this.walls = new ArrayList<>();
         this.graphicsDrawer = new GraphicsDrawer(player,monster,walls,canvas,grid);
-        this.playerName = "testPlayer";
+        this.playerName = playerName;
 
         moveKeys = new ArrayList<>();
         moveKeys.add(KeyCode.W);
