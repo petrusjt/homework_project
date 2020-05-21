@@ -9,6 +9,7 @@ import java.util.List;
  * The grid is represented by the points where the grid's lines would intersect.
  * */
 public class Grid {
+
     private double width;
     private double height;
     // The number of squares per row and per column.
