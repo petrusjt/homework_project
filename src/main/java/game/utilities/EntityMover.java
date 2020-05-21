@@ -63,9 +63,9 @@ public class EntityMover {
         boolean canMove = !walls.contains(checkWall);
 
         if(canMove)
-            Logger.debug("Did not find wall so Player can move in the tested direction");
+            Logger.debug("Did not find wall so Entity can move in the tested direction");
         else
-            Logger.debug("Found wall so Player cannot move in the tested direction");
+            Logger.debug("Found wall so Entity cannot move in the tested direction");
 
         return canMove;
     }
@@ -165,7 +165,7 @@ public class EntityMover {
         }
         else if(direction == Directions.RIGHT)
         {
-            if(player.getPosition().getY() == NUMBER_OF_CELLS)
+            if(player.getPosition().getX() == NUMBER_OF_CELLS)
             {
                 return true;
             }
