@@ -3,6 +3,7 @@ package game.utilities.entities;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import lombok.Data;
+import lombok.ToString;
 
 import java.awt.*;
 import java.awt.geom.Point2D;

@@ -10,7 +10,15 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class for handling file operations.
+ * */
 public class FileHandler {
+    /**
+     * Loads the map of the game.
+     * @param wallls The {@link List<Wall>} object to load the map into
+     * @throws {@link JAXBException} if any problem occurs during deserialization
+     * */
     public static void loadMap(List<Wall> wallls) throws JAXBException {
         Logger.info("Loading the map from resource: maps/map.xml");
         game.controller.mapxmlreader.Walls walls = JAXBHelper.fromXML(game.controller.mapxmlreader.Walls.class, FileHandler.class.getClassLoader().getResourceAsStream("maps/map.xml"));
@@ -20,7 +28,16 @@ public class FileHandler {
         }
     }
 
-    public static void savePlayerStats(String playerName, double v, int numberOfSteps, boolean gameLost) throws IOException, JAXBException {
+    /**
+     * Saves the player's stats.
+     * @param playerName The player's name
+     * @param elapsedTime The time of completing of failing the labyrinth
+     * @param numberOfSteps The number of the steps the player did in the game
+     * @param gameLost Whether the player lost or not
+     * @throws IOException if any problem occurs opening the save file
+     * @throws JAXBException if any problem occurs during serialization or deserialization
+     * */
+    public static void savePlayerStats(String playerName, double elapsedTime, int numberOfSteps, boolean gameLost) throws IOException, JAXBException {
         String userHome = System.getProperty("user.home");
         String separator = File.separator;
         String saveFilePath = userHome + separator + ".labyrinth" + separator + "savefile.xml";
@@ -34,12 +51,16 @@ public class FileHandler {
         {
             highScores.setHighScores(new ArrayList<>());
         }
-        highScores.getHighScores().add(new HighScore(playerName, v / 1000.0, numberOfSteps, !gameLost));
+        highScores.getHighScores().add(new HighScore(playerName, elapsedTime / 1000.0, numberOfSteps, !gameLost));
         OutputStream os = new FileOutputStream(saveFile);
         JAXBHelper.toXML(highScores, os);
         os.close();
     }
 
+    /**
+     * Checks for existing save file in the file system.
+     * @return Whether the save file exists
+     * */
     public static boolean doesSaveFileExist()
     {
         Logger.info("Checking for save file");
@@ -53,6 +74,11 @@ public class FileHandler {
         return saveFile.exists();
     }
 
+    /**
+     * Creates save file.
+     * @throws {@link IOException} if any problem occurs opening the save file
+     * @throws {@link JAXBException} if any problem occurs during serialization
+     * */
     public static void createSaveFile() throws IOException, JAXBException {
         Logger.info("Save file not found. Creating save file.");
 

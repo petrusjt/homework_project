@@ -2,11 +2,16 @@ package game.utilities.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.awt.geom.Point2D;
 
+/**
+ * A class representing a generic {@code Entity} object of the game.
+ * */
 @NoArgsConstructor
 @Data
+@ToString
 public class Entity {
     protected Point2D position;
 

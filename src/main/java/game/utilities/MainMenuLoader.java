@@ -7,7 +7,15 @@ import org.tinylog.Logger;
 
 import java.io.IOException;
 
+/**
+ * A helper class with the only purpose of loading the main menu.
+ *
+ * */
 public class MainMenuLoader {
+    /**
+     * Loads the main menu.
+     * @param stage The {@link Stage} the menu should load in
+     * */
     public static void loadMainMenu(Stage stage)
     {
         Logger.info("Game over. Loading main menu.");

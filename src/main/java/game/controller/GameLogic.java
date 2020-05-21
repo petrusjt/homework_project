@@ -13,13 +13,13 @@ import org.tinylog.Logger;
 
 import javax.xml.bind.JAXBException;
 import java.awt.*;
-import java.awt.geom.Point2D;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameLogic {
+
     private Entity player;
     private Entity monster;
     private List<Wall> walls;
@@ -37,14 +37,14 @@ public class GameLogic {
 
     public GameLogic(String playerName, Canvas canvas)
     {
-        grid = new Grid(canvas.getWidth(), canvas.getHeight(), NUMBER_OF_CELLS);
+        if(canvas != null)
+            grid = new Grid(canvas.getWidth(), canvas.getHeight(), NUMBER_OF_CELLS);
         this.player = new Player(new Point(0,0));
         this.monster = new Monster(new Point(4,2));
         this.walls = new ArrayList<>();
         this.graphicsDrawer = new GraphicsDrawer(player,monster,walls,canvas,grid);
         this.playerName = playerName;
 
-        EntityMover.setWalls(walls);
 
         try {
             FileHandler.loadMap(walls);
@@ -76,7 +76,8 @@ public class GameLogic {
         moveKeys.add(KeyCode.LEFT);
         moveKeys.add(KeyCode.RIGHT);
 
-        graphicsDrawer.draw();
+        if(canvas != null)
+            graphicsDrawer.draw();
         startTime = System.currentTimeMillis();
     }
 
@@ -84,13 +85,13 @@ public class GameLogic {
         KeyCode code = keyEvent.getCode();
         if(moveKeys.contains(code))
         {
-            if(EntityMover.canEntityMove(player, Directions.getDirectionFromKeyCode(code)))
+            if(EntityMover.canEntityMove(player, Directions.getDirectionFromKeyCode(code), walls))
             {
                 numberOfSteps++;
                 if(!EntityMover.isWinningMove(player, Directions.getDirectionFromKeyCode(code), NUMBER_OF_CELLS))
                 {
                     EntityMover.movePlayer(player, Directions.getDirectionFromKeyCode(code));
-                    EntityMover.moveMonster(monster, player);
+                    EntityMover.moveMonster(monster, player, walls);
                     graphicsDrawer.draw();
                     if(isGameLost())
                     {
@@ -107,8 +108,6 @@ public class GameLogic {
         }
     }
 
-
-
     private void handleGameOver(KeyEvent keyEvent) throws IOException, JAXBException {
         endTime = System.currentTimeMillis();
         if(isGameLost())
@@ -124,7 +123,15 @@ public class GameLogic {
         MainMenuLoader.loadMainMenu((Stage) ((Scene) keyEvent.getSource()).getWindow());
     }
 
-    private boolean isGameLost() {
+    public boolean isGameLost() {
         return player.getPosition().equals(monster.getPosition());
+    }
+
+    public void setPlayer(Entity player) {
+        this.player = player;
+    }
+
+    public void setMonster(Entity monster) {
+        this.monster = monster;
     }
 }
