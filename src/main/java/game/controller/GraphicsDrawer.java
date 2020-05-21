@@ -53,10 +53,13 @@ public final class GraphicsDrawer {
         Logger.debug("Drawing on the screen");
         drawGrid();
         drawWalls();
-        drawPlayer();
-        drawMonster();
+        drawEntity(player);
+        drawEntity(monster);
     }
 
+    /**
+     * Method for drawing the walls.
+     * */
     private void drawWalls() {
         Logger.debug("Drawing walls");
         for(Wall wall : walls)
@@ -89,26 +92,27 @@ public final class GraphicsDrawer {
         }
     }
 
-    private void drawMonster() {
-        Logger.debug("Drawing Monster");
-        Point2D monsterPosition = grid.getIJ(monster.getPosition().getX(), monster.getPosition().getY());
-        double monsterX = monsterPosition.getX() + OVAL_MARGIN;
-        double monsterY = monsterPosition.getY() + OVAL_MARGIN;
-        double monsterWidth = grid.getCellWidth() - 2* OVAL_MARGIN;
-        double monsterHeight = grid.getCellHeight() - 2* OVAL_MARGIN;
-        canvas.getGraphicsContext2D().setFill(Color.BLACK);
-        canvas.getGraphicsContext2D().fillOval(monsterX, monsterY, monsterWidth, monsterHeight);
-    }
-
-    private void drawPlayer() {
-        Logger.debug("Drawing Player");
-        Point2D playerPosition = grid.getIJ(player.getPosition().getX(), player.getPosition().getY());
-        double playerX = playerPosition.getX() + OVAL_MARGIN;
-        double playerY = playerPosition.getY() + OVAL_MARGIN;
-        double playerWidth = grid.getCellWidth() - 2* OVAL_MARGIN;
-        double playerHeight = grid.getCellHeight() - 2* OVAL_MARGIN;
-        canvas.getGraphicsContext2D().setFill(Color.DODGERBLUE);
-        canvas.getGraphicsContext2D().fillOval(playerX, playerY, playerWidth, playerHeight);
+    /**
+     * Method for drawing an {@code Entity} on the {@code canvas}.
+     * @param entity the {@code Entity} object to draw on the canvas
+     * */
+    private void drawEntity(Entity entity)
+    {
+        Logger.debug("Drawing entity: " + entity.toString());
+        Point2D entityPosition = grid.getIJ(entity.getPosition().getX(), entity.getPosition().getY());
+        double entityX = entityPosition.getX() + OVAL_MARGIN;
+        double entityY = entityPosition.getY() + OVAL_MARGIN;
+        double entityWidth = grid.getCellWidth() - 2* OVAL_MARGIN;
+        double entityHeight = grid.getCellHeight() - 2* OVAL_MARGIN;
+        if(entity.getClass() == Player.class)
+        {
+            canvas.getGraphicsContext2D().setFill(Color.DODGERBLUE);
+        }
+        else
+        {
+            canvas.getGraphicsContext2D().setFill(Color.BLACK);
+        }
+        canvas.getGraphicsContext2D().fillOval(entityX, entityY, entityWidth, entityHeight);
     }
 
     private void drawGrid() {
