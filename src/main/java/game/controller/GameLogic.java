@@ -9,6 +9,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import lombok.Getter;
+import lombok.Setter;
 import org.tinylog.Logger;
 
 import javax.xml.bind.JAXBException;
@@ -18,9 +20,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Provides the game's logic.
+ * */
 public class GameLogic {
 
+    @Getter @Setter
     private Entity player;
+    @Getter @Setter
     private Entity monster;
     private List<Wall> walls;
     private Grid grid;
@@ -35,6 +42,11 @@ public class GameLogic {
     private int numberOfSteps = 0;
     private String playerName;
 
+    /**
+     * Creates {@link GameLogic} object containing every information the game needs.
+     * @param playerName The player's name
+     * @param canvas The {@link Canvas} object the game will be drawn on
+     * */
     public GameLogic(String playerName, Canvas canvas)
     {
         if(canvas != null)
@@ -81,6 +93,10 @@ public class GameLogic {
         startTime = System.currentTimeMillis();
     }
 
+    /**
+     * Controls the game based on what event the {@link KeyEvent} parameter is representing.
+     * @param keyEvent The event that occurred
+     * */
     public void doGameLogic(KeyEvent keyEvent) throws IOException, JAXBException {
         KeyCode code = keyEvent.getCode();
         if(moveKeys.contains(code))
@@ -108,6 +124,12 @@ public class GameLogic {
         }
     }
 
+    /**
+     * Handles when the game is over.
+     * @param keyEvent The event that was triggered that resulted in the game over state.
+     * @throws IOException if any problem occurs opening the save file
+     * @throws JAXBException if any problem occurs during serialization or deserialization
+     * */
     private void handleGameOver(KeyEvent keyEvent) throws IOException, JAXBException {
         endTime = System.currentTimeMillis();
         if(isGameLost())
@@ -123,15 +145,11 @@ public class GameLogic {
         MainMenuLoader.loadMainMenu((Stage) ((Scene) keyEvent.getSource()).getWindow());
     }
 
+    /**
+     * Returns whether the game is lost.
+     * @return Whether the game is lost.
+     * */
     public boolean isGameLost() {
         return player.getPosition().equals(monster.getPosition());
-    }
-
-    public void setPlayer(Entity player) {
-        this.player = player;
-    }
-
-    public void setMonster(Entity monster) {
-        this.monster = monster;
     }
 }
