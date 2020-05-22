@@ -2,7 +2,8 @@
 # Labyrinth
 
 ## Mi is ez a projekt?  
-Az egyetemen minden hallgatónak kötelező egy házi feladat projektmunkát készíteni Szoftverfejlesztés tárgyból.
+Az egyetemen minden hallgatónak kötelező egy házi feladat projektmunkát készíteni Szoftverfejlesztés tárgyból.  
+Ez az én projektem megvalósítása.
   
 ## Rövid leírás
 Ez a projekt lényegében egy labirintus játék, ahol ki kell jutni a labirintusból. Viszont van egy nehezítés.
