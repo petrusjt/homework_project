@@ -23,10 +23,10 @@ public class LanguageLoader {
      * */
     public static void loadGameStrings(String languageCode)
     {
-        language = languageCode;
+        language = languageCode.toLowerCase();
         Logger.info("Loading hungarian language.");
         try {
-            gameStrings = JAXBHelper.fromXML(GameStrings.class, LanguageLoader.class.getClassLoader().getResourceAsStream("strings_"+ languageCode.toLowerCase() +".xml"));
+            gameStrings = JAXBHelper.fromXML(GameStrings.class, LanguageLoader.class.getClassLoader().getResourceAsStream("strings_"+ language +".xml"));
         } catch (JAXBException e) {
             e.printStackTrace();
             Logger.warn(e);
