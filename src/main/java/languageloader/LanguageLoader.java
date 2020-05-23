@@ -7,35 +7,29 @@ import xmlhelper.JAXBHelper;
 
 import javax.xml.bind.JAXBException;
 
-
+/**
+ * Helper class for loading the application's texts in the given language.
+ * */
 public class LanguageLoader {
     @Getter
     private static GameStrings gameStrings;
     @Getter
-    private static String language = "hu";
+    private static String language;
 
-    public static void loadEnglishGameStrings()
+    /**
+     * Loads the application's strings in the given language.
+     * Currently there are only two available languages. English and hungarian.
+     * @param languageCode The two-letter code of the language
+     * */
+    public static void loadGameStrings(String languageCode)
     {
-        language = "en";
-        Logger.info("Loading english language.");
-        try {
-            gameStrings = JAXBHelper.fromXML(GameStrings.class, LanguageLoader.class.getClassLoader().getResourceAsStream("strings_en.xml"));
-        } catch (JAXBException e) {
-            e.printStackTrace();
-            Logger.warn(e);
-        }
-    }
-
-    public static void loadHungarianGameStrings()
-    {
-        language = "hu";
+        language = languageCode;
         Logger.info("Loading hungarian language.");
         try {
-            gameStrings = JAXBHelper.fromXML(GameStrings.class, LanguageLoader.class.getClassLoader().getResourceAsStream("strings_hu.xml"));
+            gameStrings = JAXBHelper.fromXML(GameStrings.class, LanguageLoader.class.getClassLoader().getResourceAsStream("strings_"+ languageCode.toLowerCase() +".xml"));
         } catch (JAXBException e) {
             e.printStackTrace();
             Logger.warn(e);
         }
     }
-
 }
