@@ -7,6 +7,6 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.HighScoreWindowController">
    <children>
       <TableView fx:id="highScoreTable" layoutX="151.0" layoutY="101.0" prefHeight="500.0" prefWidth="600.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Button layoutX="253.0" layoutY="522.0" mnemonicParsing="false" onMouseClicked="#backToMainMenu" prefHeight="41.0" prefWidth="95.0" text="Vissza" />
+      <Button fx:id="backToMainWindowButton" layoutX="253.0" layoutY="522.0" mnemonicParsing="false" onMouseClicked="#backToMainMenu" prefHeight="41.0" prefWidth="95.0" text="Vissza" />
    </children>
 </AnchorPane>

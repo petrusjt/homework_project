@@ -105,3 +105,4 @@ buildNumber.properties
 
 
 *.diff
+src/main/java/languagexmlgenerator/

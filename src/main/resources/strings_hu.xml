@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<gameStrings>
+    <mainWindowTitle>Főmenü</mainWindowTitle>
+    <startButtonText>Játék</startButtonText>
+    <helpButtonText>Játékleírás</helpButtonText>
+    <highScoreButtonText>Rekordok</highScoreButtonText>
+    <exitButtonText>Kilépés</exitButtonText>
+    <playerNameLabelText>Játékos neve</playerNameLabelText>
+    <highScoreWindowTitle>Rekordok</highScoreWindowTitle>
+    <helpWindowTitle>Játékleírás</helpWindowTitle>
+    <backToMainWindowButtonText>Vissza</backToMainWindowButtonText>
+    <playerNameColumnText>Játékos neve</playerNameColumnText>
+    <secondsToEndColumnText>Idő</secondsToEndColumnText>
+    <numberOfStepsColumnText>Lépések száma</numberOfStepsColumnText>
+    <gameWonColumnText>Kijutott?</gameWonColumnText>
+    <gameDescriptionURL>game_description_hu.txt</gameDescriptionURL>
+</gameStrings>

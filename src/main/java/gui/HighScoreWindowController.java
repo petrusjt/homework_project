@@ -6,11 +6,13 @@ import game.utilities.MainMenuLoader;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import languageloader.LanguageLoader;
 import org.tinylog.Logger;
 import xmlhelper.JAXBHelper;
 
@@ -22,6 +24,8 @@ import java.util.ResourceBundle;
 public class HighScoreWindowController implements Initializable {
     @FXML
     private TableView<HighScore> highScoreTable;
+    @FXML
+    private Button backToMainWindowButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -31,21 +35,22 @@ public class HighScoreWindowController implements Initializable {
         Logger.info("Loading save file data from " + saveFilePath);
 
         File saveFile = new File(saveFilePath);
+        backToMainWindowButton.setText(LanguageLoader.getGameStrings().getBackToMainWindowButtonText());
 
         try {
             InputStream inputStream = new FileInputStream(saveFile);
             HighScores highScores = JAXBHelper.fromXML(HighScores.class, inputStream);
 
-            TableColumn<HighScore, String> userNameCol = new TableColumn<>("Név");
+            TableColumn<HighScore, String> userNameCol = new TableColumn<>(LanguageLoader.getGameStrings().getPlayerNameColumnText());
             userNameCol.setPrefWidth(150);
             userNameCol.setStyle("-fx-alignment: CENTER");
-            TableColumn<HighScore, Float> timeCol = new TableColumn<>("Idő");
+            TableColumn<HighScore, Float> timeCol = new TableColumn<>(LanguageLoader.getGameStrings().getSecondsToEndColumnText());
             timeCol.setPrefWidth(150);
             timeCol.setStyle("-fx-alignment: CENTER");
-            TableColumn<HighScore, Integer> stepsCol = new TableColumn<>("Lépések száma");
+            TableColumn<HighScore, Integer> stepsCol = new TableColumn<>(LanguageLoader.getGameStrings().getNumberOfStepsColumnText());
             stepsCol.setPrefWidth(150);
             stepsCol.setStyle("-fx-alignment: CENTER");
-            TableColumn<HighScore, String> isFinishedCol = new TableColumn<>("Kijutott?");
+            TableColumn<HighScore, String> isFinishedCol = new TableColumn<>(LanguageLoader.getGameStrings().getGameWonColumnText());
             isFinishedCol.setPrefWidth(150);
             isFinishedCol.setStyle("-fx-alignment: CENTER");
 

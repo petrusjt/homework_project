@@ -4,9 +4,11 @@ import game.utilities.MainMenuLoader;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import languageloader.LanguageLoader;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -16,11 +18,12 @@ import java.util.Scanner;
 public class HelpWindowController implements Initializable {
     @FXML
     private TextArea textArea;
-
+    @FXML
+    private Button backButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        InputStream is = getClass().getClassLoader().getResourceAsStream("game_description.txt");
+        InputStream is = getClass().getClassLoader().getResourceAsStream(LanguageLoader.getGameStrings().getGameDescriptionURL());
         Scanner scanner = new Scanner(is);
         String gameDescription = "";
         while(scanner.hasNextLine())
@@ -28,6 +31,7 @@ public class HelpWindowController implements Initializable {
             gameDescription += scanner.nextLine() + "\n";
         }
         textArea.setText(gameDescription);
+        backButton.setText(LanguageLoader.getGameStrings().getBackToMainWindowButtonText());
     }
 
     public void backToMainMenu(MouseEvent event) {

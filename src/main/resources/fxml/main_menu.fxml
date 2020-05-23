@@ -8,15 +8,17 @@
 
 <AnchorPane fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainWindowController">
    <children>
-      <Button fx:id="startButton" disable="true" layoutX="253.0" layoutY="126.0" mnemonicParsing="false" onMouseClicked="#startGame" prefHeight="45.0" prefWidth="94.0" text="Játék" />
-      <Button fx:id="highscoreButton" layoutX="253.0" layoutY="177.0" mnemonicParsing="false" onMouseClicked="#showHighScores" prefHeight="45.0" prefWidth="94.0" text="Rekordok" />
-      <Button fx:id="exitButton" layoutX="253.0" layoutY="294.0" mnemonicParsing="false" onMouseClicked="#exitGame" prefHeight="45.0" prefWidth="94.0" text="Kilépés" />
-      <Button fx:id="helpButton" layoutX="253.0" layoutY="229.0" mnemonicParsing="false" onMouseClicked="#showHelp" prefHeight="45.0" prefWidth="94.0" text="Játékleírás" />
+      <Button fx:id="startButton" disable="true" layoutX="220.0" layoutY="131.0" mnemonicParsing="false" onMouseClicked="#startGame" prefHeight="45.0" prefWidth="161.0" text="Játék" />
+      <Button fx:id="highscoreButton" layoutX="220.0" layoutY="182.0" mnemonicParsing="false" onMouseClicked="#showHighScores" prefHeight="45.0" prefWidth="161.0" text="Rekordok" />
+      <Button fx:id="exitButton" layoutX="220.0" layoutY="299.0" mnemonicParsing="false" onMouseClicked="#exitGame" prefHeight="45.0" prefWidth="161.0" text="Kilépés" />
+      <Button fx:id="helpButton" layoutX="220.0" layoutY="234.0" mnemonicParsing="false" onMouseClicked="#showHelp" prefHeight="45.0" prefWidth="161.0" text="Játékleírás" />
       <TextField fx:id="playerName" layoutX="215.0" layoutY="78.0" onKeyTyped="#checkPlayerNameGiven" prefHeight="37.0" prefWidth="171.0" />
-      <Label layoutX="236.0" layoutY="44.0" text="Játékos neve:">
+      <Label fx:id="playerNameLabel" layoutX="236.0" layoutY="44.0" text="Játékos neve:">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
+      <Button fx:id="huLanguageSelectorButton" disable="true" layoutX="499.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#loadHungarianLanguage" prefHeight="26.0" prefWidth="40.0" text="HU" />
+      <Button fx:id="enLanguageSelectorButton" layoutX="546.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#LoadEnglishLanguage" prefHeight="26.0" prefWidth="40.0" text="EN" />
    </children>
 </AnchorPane>

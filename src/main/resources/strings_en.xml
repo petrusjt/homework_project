@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<gameStrings>
+    <mainWindowTitle>Main menu</mainWindowTitle>
+    <startButtonText>Play</startButtonText>
+    <helpButtonText>Game description</helpButtonText>
+    <highScoreButtonText>High scores</highScoreButtonText>
+    <exitButtonText>Exit</exitButtonText>
+    <playerNameLabelText>Player's name</playerNameLabelText>
+    <highScoreWindowTitle>High scores</highScoreWindowTitle>
+    <helpWindowTitle>Game description</helpWindowTitle>
+    <backToMainWindowButtonText>Back</backToMainWindowButtonText>
+    <playerNameColumnText>Player's name</playerNameColumnText>
+    <secondsToEndColumnText>Time</secondsToEndColumnText>
+    <numberOfStepsColumnText>Number of steps</numberOfStepsColumnText>
+    <gameWonColumnText>Escaped?</gameWonColumnText>
+    <gameDescriptionURL>game_description_en.txt</gameDescriptionURL>
+</gameStrings>

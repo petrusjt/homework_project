@@ -3,6 +3,7 @@ package game.utilities;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import languageloader.LanguageLoader;
 import org.tinylog.Logger;
 
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class MainMenuLoader {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        stage.setTitle("Főmenü");
+        stage.setTitle(LanguageLoader.getGameStrings().getMainWindowTitle());
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();

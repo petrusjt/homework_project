@@ -96,6 +96,8 @@ public class GameLogic {
     /**
      * Controls the game based on what event the {@link KeyEvent} parameter is representing.
      * @param keyEvent The event that occurred
+     * @throws {@link IOException} if any problem occurs opening the save file
+     * @throws JAXBException if any problem occurs during serialization or deserialization
      * */
     public void doGameLogic(KeyEvent keyEvent) throws IOException, JAXBException {
         KeyCode code = keyEvent.getCode();
