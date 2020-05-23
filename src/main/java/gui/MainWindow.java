@@ -13,7 +13,7 @@ public final class MainWindow extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        LanguageLoader.loadHungarianGameStrings();
+        LanguageLoader.loadGameStrings("hu");
         primaryStage.getIcons().add(new Image(getClass().getClassLoader().getResourceAsStream("icon.png")));
         MainMenuLoader.loadMainMenu(primaryStage);
     }

@@ -11,6 +11,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import languageloader.LanguageLoader;
 import org.tinylog.Logger;
@@ -22,6 +23,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class HighScoreWindowController implements Initializable {
+    @FXML
+    private AnchorPane anchorPane;
     @FXML
     private TableView<HighScore> highScoreTable;
     @FXML
@@ -72,7 +75,7 @@ public class HighScoreWindowController implements Initializable {
         } catch (JAXBException e) {
             e.printStackTrace();
         }
-
+        anchorPane.setStyle("-fx-background-image: url('highscorewindow_background.png');");
 
     }
 

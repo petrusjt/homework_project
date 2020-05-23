@@ -121,14 +121,14 @@ public class MainWindowController implements Initializable {
     }
 
     public void loadHungarianLanguage(MouseEvent mouseEvent) {
-        LanguageLoader.loadHungarianGameStrings();
+        LanguageLoader.loadGameStrings("hu");
         huLanguageSelectorButton.setDisable(true);
         enLanguageSelectorButton.setDisable(false);
         setTexts();
     }
 
     public void LoadEnglishLanguage(MouseEvent mouseEvent) {
-        LanguageLoader.loadEnglishGameStrings();
+        LanguageLoader.loadGameStrings("en");
         huLanguageSelectorButton.setDisable(false);
         enLanguageSelectorButton.setDisable(true);
         setTexts();
@@ -160,5 +160,6 @@ public class MainWindowController implements Initializable {
             huLanguageSelectorButton.setDisable(false);
             enLanguageSelectorButton.setDisable(true);
         }
+        anchorPane.setStyle("-fx-background-image: url('mainwindow_background.png')");
     }
 }

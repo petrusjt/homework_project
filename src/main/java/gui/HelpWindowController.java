@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import languageloader.LanguageLoader;
 
@@ -16,6 +17,8 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class HelpWindowController implements Initializable {
+    @FXML
+    private AnchorPane anchorPane;
     @FXML
     private TextArea textArea;
     @FXML
@@ -32,6 +35,7 @@ public class HelpWindowController implements Initializable {
         }
         textArea.setText(gameDescription);
         backButton.setText(LanguageLoader.getGameStrings().getBackToMainWindowButtonText());
+        anchorPane.setStyle("-fx-background-image: url('mainwindow_background.png');-fx-background-size: 100% auto;");
     }
 
     public void backToMainMenu(MouseEvent event) {
