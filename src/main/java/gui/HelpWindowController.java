@@ -13,6 +13,7 @@ import languageloader.DescriptionLoader;
 import languageloader.LanguageLoader;
 import lombok.SneakyThrows;
 
+import javax.xml.bind.JAXBException;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -30,10 +31,13 @@ public class HelpWindowController implements Initializable {
     @FXML
     private Button backButton;
 
-    @SneakyThrows
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        textArea.setText(DescriptionLoader.getDescription());
+        try {
+            textArea.setText(DescriptionLoader.getDescription());
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
         backButton.setText(LanguageLoader.getGameStrings().getBackToMainWindowButtonText());
         anchorPane.setStyle("-fx-background-image: url('mainwindow_background.png');-fx-background-size: 100% auto;");
     }
