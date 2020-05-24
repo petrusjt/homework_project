@@ -16,3 +16,9 @@ Building the project requires JDK 13 or later and [Apache Maven](https://maven.a
 ## Hungarian README
 The hungarian README is available [here](https://github.com/petrusjt/homework_project/blob/master/README_HU.md)
 
+## Prebuilt executable binaries
+### For linux:
+[Download](https://mega.nz/file/MNFD2CDQ#SKBW0H34Kijk2Sqx29hsYji2Ap-9Wnxjwgz3FFCZV5Q)
+### For windows:
+[Download](https://mega.nz/file/ZRE3jCbL#mDxhSVT3b_cypKkb4oXxjKGzGkV4MT7VpZhrtDOA5gU)
+
