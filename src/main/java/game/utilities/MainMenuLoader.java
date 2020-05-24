@@ -19,7 +19,7 @@ public class MainMenuLoader {
      * */
     public static void loadMainMenu(Stage stage)
     {
-        Logger.info("Game over. Loading main menu.");
+        Logger.info("Loading main menu.");
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(FXMLLoader.getDefaultClassLoader().getResource("fxml/main_menu.fxml"));
         Scene scene = null;
