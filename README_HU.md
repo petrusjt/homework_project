@@ -14,6 +14,9 @@ A szörny előnyben részesíti a vízszintes mozgást. Ezt az információt fel
 ## Követelmények
 A projekt buildeléséhez szükség van a JDK 13-as vagy újabb változatára, illetve az [Apache Maven](https://maven.apache.org/) eszközre.
 
+## A projekt website-ja
+http://shrek.unideb.hu/~petrusjt/homework_project/
+
 ## Előre buildelt futtatható binárisok
 ### Linux rendszerekhez
 [Letöltés](https://mega.nz/file/MNFD2CDQ#SKBW0H34Kijk2Sqx29hsYji2Ap-9Wnxjwgz3FFCZV5Q)
