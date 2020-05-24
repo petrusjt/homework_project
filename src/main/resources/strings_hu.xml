@@ -13,5 +13,5 @@
     <secondsToEndColumnText>Idő</secondsToEndColumnText>
     <numberOfStepsColumnText>Lépések száma</numberOfStepsColumnText>
     <gameWonColumnText>Kijutott?</gameWonColumnText>
-    <gameDescriptionURL>game_description_hu.txt</gameDescriptionURL>
+    <gameDescriptionURL>game_description_hu.xml</gameDescriptionURL>
 </gameStrings>

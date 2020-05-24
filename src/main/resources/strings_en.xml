@@ -13,5 +13,5 @@
     <secondsToEndColumnText>Time</secondsToEndColumnText>
     <numberOfStepsColumnText>Number of steps</numberOfStepsColumnText>
     <gameWonColumnText>Escaped?</gameWonColumnText>
-    <gameDescriptionURL>game_description_en.txt</gameDescriptionURL>
+    <gameDescriptionURL>game_description_en.xml</gameDescriptionURL>
 </gameStrings>
