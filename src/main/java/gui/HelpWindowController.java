@@ -9,10 +9,16 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import languageloader.DescriptionLoader;
 import languageloader.LanguageLoader;
+import lombok.SneakyThrows;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
@@ -24,16 +30,10 @@ public class HelpWindowController implements Initializable {
     @FXML
     private Button backButton;
 
+    @SneakyThrows
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        InputStream is = getClass().getClassLoader().getResourceAsStream(LanguageLoader.getGameStrings().getGameDescriptionURL());
-        Scanner scanner = new Scanner(is);
-        String gameDescription = "";
-        while(scanner.hasNextLine())
-        {
-            gameDescription += scanner.nextLine() + "\n";
-        }
-        textArea.setText(gameDescription);
+        textArea.setText(DescriptionLoader.getDescription());
         backButton.setText(LanguageLoader.getGameStrings().getBackToMainWindowButtonText());
         anchorPane.setStyle("-fx-background-image: url('mainwindow_background.png');-fx-background-size: 100% auto;");
     }
