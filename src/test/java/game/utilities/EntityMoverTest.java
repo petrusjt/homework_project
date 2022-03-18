@@ -1,11 +1,10 @@
 package game.utilities;
 
-import game.controller.GameLogic;
 import game.utilities.entities.Monster;
 import game.utilities.entities.Player;
+import game.utilities.helpers.Point2D;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,65 +14,69 @@ class EntityMoverTest {
 
     @Test
     void canEntityMove() {
-        List<Wall> walls = new ArrayList<>();
-        Player player = new Player(new Point(0,0));
+        final List<Wall> walls = new ArrayList<>();
+        final Player player = new Player(new Point2D(0,0));
+        final EntityMover entityMover = new EntityMover(walls);
 
         walls.add(new Wall(0,0,1,0));
         walls.add(new Wall(0,0,0,1));
         walls.add(new Wall(0,1,1,1));
         walls.add(new Wall(1,0,1,1));
 
-        assertFalse(EntityMover.canEntityMove(player, Directions.Direction.UP,walls));
-        assertFalse(EntityMover.canEntityMove(player, Directions.Direction.DOWN,walls));
-        assertFalse(EntityMover.canEntityMove(player, Directions.Direction.LEFT,walls));
-        assertFalse(EntityMover.canEntityMove(player, Directions.Direction.RIGHT,walls));
+        assertFalse(entityMover.canEntityMove(player, Direction.UP));
+        assertFalse(entityMover.canEntityMove(player, Direction.DOWN));
+        assertFalse(entityMover.canEntityMove(player, Direction.LEFT));
+        assertFalse(entityMover.canEntityMove(player, Direction.RIGHT));
 
         walls.remove(walls.size() - 1);
-        assertTrue(EntityMover.canEntityMove(player, Directions.Direction.RIGHT,walls));
+        assertTrue(entityMover.canEntityMove(player, Direction.RIGHT));
     }
 
     @Test
     void movePlayer() {
-        Player player = new Player(new Point(3,3));
-        EntityMover.movePlayer(player, Directions.Direction.LEFT);
-        assertEquals(new Point(2,3), player.getPosition());
-        EntityMover.movePlayer(player, Directions.Direction.UP);
-        assertEquals(new Point(2,2), player.getPosition());
-        EntityMover.movePlayer(player, Directions.Direction.RIGHT);
-        assertEquals(new Point(3,2), player.getPosition());
-        EntityMover.movePlayer(player, Directions.Direction.DOWN);
-        assertEquals(new Point(3,3), player.getPosition());
+        final Player player = new Player(new Point2D(3,3));
+        final EntityMover entityMover = new EntityMover(new ArrayList<>());
+        entityMover.movePlayer(player, Direction.LEFT);
+        assertEquals(new Point2D(2,3), player.getPosition());
+        entityMover.movePlayer(player, Direction.UP);
+        assertEquals(new Point2D(2,2), player.getPosition());
+        entityMover.movePlayer(player, Direction.RIGHT);
+        assertEquals(new Point2D(3,2), player.getPosition());
+        entityMover.movePlayer(player, Direction.DOWN);
+        assertEquals(new Point2D(3,3), player.getPosition());
     }
 
     @Test
     void moveMonster() {
-        Monster monster = new Monster(new Point(1,1));
-        Player player = new Player(new Point(0,0));
-        List<Wall> walls = new ArrayList<>();
-        EntityMover.moveMonster(monster,player,walls);
+        final Monster monster = new Monster(new Point2D(1,1));
+        final Player player = new Player(new Point2D(0,0));
+        final List<Wall> walls = new ArrayList<>();
+        final EntityMover entityMover = new EntityMover(walls);
+        entityMover.moveMonster(monster,player);
         assertEquals(player.getPosition(), monster.getPosition());
-        player.setPosition(new Point(2,2));
-        EntityMover.moveMonster(monster,player,walls);
-        assertEquals(new Point(2,0), monster.getPosition());
-        EntityMover.moveMonster(monster,player,walls);
-        assertEquals(new Point(2,2), monster.getPosition());
+        player.setPosition(new Point2D(2,2));
+        entityMover.moveMonster(monster,player);
+        assertEquals(new Point2D(2,0), monster.getPosition());
+        entityMover.moveMonster(monster,player);
+        assertEquals(new Point2D(2,2), monster.getPosition());
         assertEquals(player.getPosition(), monster.getPosition());
     }
 
     @Test
     void isWinningMove() {
-        Player player = new Player(new Point(0,0));
-        assertTrue(EntityMover.isWinningMove(player,Directions.UP, 6));
-        assertTrue(EntityMover.isWinningMove(player,Directions.LEFT, 6));
-        assertFalse(EntityMover.isWinningMove(player,Directions.RIGHT, 6));
-        assertFalse(EntityMover.isWinningMove(player,Directions.DOWN, 6));
+        final Player player = new Player(new Point2D(0,0));
+        final EntityMover entityMover = new EntityMover(new ArrayList<>());
+        assertTrue(entityMover.isWinningMove(player, Direction.UP, 6));
+        assertTrue(entityMover.isWinningMove(player, Direction.LEFT, 6));
+        assertFalse(entityMover.isWinningMove(player, Direction.RIGHT, 6));
+        assertFalse(entityMover.isWinningMove(player, Direction.DOWN, 6));
 
-        player.setPosition(new Point(6,3));
-        assertFalse(EntityMover.isWinningMove(player,Directions.UP, 6));
-        assertFalse(EntityMover.isWinningMove(player,Directions.LEFT, 6));
-        assertTrue(EntityMover.isWinningMove(player,Directions.RIGHT, 6));
-        player.setPosition(new Point(6,6));
-        assertTrue(EntityMover.isWinningMove(player,Directions.RIGHT, 6));
-        assertTrue(EntityMover.isWinningMove(player,Directions.DOWN, 6));
+        player.setPosition(new Point2D(6,3));
+        assertFalse(entityMover.isWinningMove(player, Direction.UP, 6));
+        assertFalse(entityMover.isWinningMove(player, Direction.LEFT, 6));
+        assertTrue(entityMover.isWinningMove(player, Direction.RIGHT, 6));
+        player.setPosition(new Point2D(6,6));
+        assertTrue(entityMover.isWinningMove(player, Direction.RIGHT, 6));
+        assertTrue(entityMover.isWinningMove(player, Direction.DOWN, 6));
     }
 }

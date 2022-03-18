@@ -1,10 +1,10 @@
 package game.utilities.entities;
 
+import game.utilities.helpers.Point2D;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.awt.geom.Point2D;
 
 /**
  * A class representing a generic {@code Entity} object of the game.
@@ -19,7 +19,7 @@ public class Entity {
      * Creates {@code Entity} object and sets the entity's position to the given position.
      * @param position The position to create the object at.
      * */
-    public Entity(Point2D position) {
+    public Entity(final Point2D position) {
         this.position = position;
     }
 }

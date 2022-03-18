@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 
 /**
  * Data class that represents {@code HighScore} objects stored in the save file.
- * */
+ */
 @XmlAccessorType(XmlAccessType.FIELD)
 @Data
 @NoArgsConstructor
@@ -22,17 +22,14 @@ public class HighScore {
 
     /**
      * Custom getter for field {@code gameWon}.
+     *
      * @return {@link String} object containing either character Unicode 0x2714 or character Unicode 0x2716 depending on field {@code gameWon}
-     * */
-    public String isGameWon()
-    {
+     */
+    public String isGameWon() {
         int c;
-        if(gameWon)
-        {
+        if (gameWon) {
             c = 0x2714;
-        }
-        else
-        {
+        } else {
             c = 0x2716;
         }
         return String.valueOf((char) c);

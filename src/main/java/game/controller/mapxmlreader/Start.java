@@ -15,6 +15,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Start {
-    int x;
-    int y;
+    private int x;
+    private int y;
 }

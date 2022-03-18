@@ -20,16 +20,12 @@ public class JAXBHelper {
      * @param os the {@code OutputStream} to write to
      * @throws JAXBException if any problem occurs during serialization
      */
-    public static void toXML(Object o, OutputStream os) throws JAXBException {
-        try {
-            JAXBContext context = JAXBContext.newInstance(o.getClass());
-            Marshaller marshaller = context.createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
-            marshaller.marshal(o, os);
-        } catch(JAXBException e) {
-            throw e;
-        }
+    public static void toXML(final game.highscore.HighScores o, final OutputStream os) throws JAXBException {
+        final JAXBContext context = JAXBContext.newInstance(o.getClass());
+        final Marshaller marshaller = context.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+        marshaller.marshal(o, os);
     }
 
     /**
@@ -41,14 +37,11 @@ public class JAXBHelper {
      * @return the resulting object
      * @throws JAXBException if any problem occurs during deserialization
      */
-    public static <T> T fromXML(Class<T> clazz, InputStream is) throws JAXBException {
-        try {
-            JAXBContext context = JAXBContext.newInstance(clazz);
-            Unmarshaller unmarshaller = context.createUnmarshaller();
-            return (T) unmarshaller.unmarshal(is);
-        } catch(JAXBException e) {
-            throw e;
-        }
+    @SuppressWarnings("unchecked")
+    public static <T> T fromXML(final Class<T> clazz, final InputStream is) throws JAXBException {
+        final JAXBContext context = JAXBContext.newInstance(clazz);
+        final Unmarshaller unmarshaller = context.createUnmarshaller();
+        return (T) unmarshaller.unmarshal(is);
     }
 
 }

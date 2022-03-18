@@ -9,17 +9,17 @@ class DirectionsTest {
 
     @Test
     void getDirectionFromKeyCode() {
-        assertEquals(Directions.UP, Directions.getDirectionFromKeyCode(KeyCode.W));
-        assertEquals(Directions.DOWN, Directions.getDirectionFromKeyCode(KeyCode.S));
-        assertEquals(Directions.LEFT, Directions.getDirectionFromKeyCode(KeyCode.A));
-        assertEquals(Directions.RIGHT, Directions.getDirectionFromKeyCode(KeyCode.D));
-        assertEquals(Directions.UP, Directions.getDirectionFromKeyCode(KeyCode.UP));
-        assertEquals(Directions.DOWN, Directions.getDirectionFromKeyCode(KeyCode.DOWN));
-        assertEquals(Directions.LEFT, Directions.getDirectionFromKeyCode(KeyCode.LEFT));
-        assertEquals(Directions.RIGHT, Directions.getDirectionFromKeyCode(KeyCode.RIGHT));
+        assertEquals(Direction.UP, Direction.getDirectionFromKeyCode(KeyCode.W));
+        assertEquals(Direction.DOWN, Direction.getDirectionFromKeyCode(KeyCode.S));
+        assertEquals(Direction.LEFT, Direction.getDirectionFromKeyCode(KeyCode.A));
+        assertEquals(Direction.RIGHT, Direction.getDirectionFromKeyCode(KeyCode.D));
+        assertEquals(Direction.UP, Direction.getDirectionFromKeyCode(KeyCode.UP));
+        assertEquals(Direction.DOWN, Direction.getDirectionFromKeyCode(KeyCode.DOWN));
+        assertEquals(Direction.LEFT, Direction.getDirectionFromKeyCode(KeyCode.LEFT));
+        assertEquals(Direction.RIGHT, Direction.getDirectionFromKeyCode(KeyCode.RIGHT));
 
-        assertEquals(Directions.RIGHT, Directions.getDirectionFromKeyCode(KeyCode.Q));
-        assertEquals(Directions.RIGHT, Directions.getDirectionFromKeyCode(KeyCode.ENTER));
-        assertEquals(Directions.RIGHT, Directions.getDirectionFromKeyCode(KeyCode.SPACE));
+        assertEquals(Direction.RIGHT, Direction.getDirectionFromKeyCode(KeyCode.Q));
+        assertEquals(Direction.RIGHT, Direction.getDirectionFromKeyCode(KeyCode.ENTER));
+        assertEquals(Direction.RIGHT, Direction.getDirectionFromKeyCode(KeyCode.SPACE));
     }
 }

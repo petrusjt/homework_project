@@ -16,6 +16,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Wall {
-    Start start;
-    End end;
+    private Start start;
+    private End end;
 }

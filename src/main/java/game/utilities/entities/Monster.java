@@ -1,17 +1,14 @@
 package game.utilities.entities;
 
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+import game.utilities.helpers.Point2D;
 import lombok.Data;
-import lombok.ToString;
-
-import java.awt.*;
-import java.awt.geom.Point2D;
+import lombok.EqualsAndHashCode;
 
 /**
  * Class for representing the monster that chases the Player.
  * */
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class Monster extends Entity{
     /**
      * Creates {@code Monster} object and sets the monster's position to the given position.

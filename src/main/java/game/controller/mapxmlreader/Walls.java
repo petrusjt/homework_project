@@ -15,7 +15,9 @@ import java.util.List;
  * */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-@Data @NoArgsConstructor @AllArgsConstructor
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Walls {
-    List<Wall> wall;
+    private List<Wall> wall;
 }

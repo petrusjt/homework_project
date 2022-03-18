@@ -1,10 +1,9 @@
 package game.utilities;
 
+import game.utilities.helpers.Point2D;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-import java.awt.Point;
 
 /**
  * Class for representing the walls in the labyrinth.
@@ -13,8 +12,8 @@ import java.awt.Point;
 @AllArgsConstructor
 @EqualsAndHashCode
 public class Wall {
-    Point start;
-    Point end;
+    private Point2D start;
+    private Point2D end;
 
     /**
      * Creates wall object.
@@ -24,8 +23,8 @@ public class Wall {
      * @param endY The y coordinate of the end of the wall
      * */
     public Wall(int startX, int startY, int endX, int endY) {
-        start = new Point(startX, startY);
-        end = new Point(endX, endY);
+        start = new Point2D(startX, startY);
+        end = new Point2D(endX, endY);
     }
 
 }

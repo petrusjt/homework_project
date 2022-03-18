@@ -13,6 +13,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Data @AllArgsConstructor @NoArgsConstructor
 public class End {
-    int x;
-    int y;
+    private int x;
+    private int y;
 }
